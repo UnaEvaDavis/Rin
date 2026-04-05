@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Modal from 'react-modal'
 import 'remixicon/fonts/remixicon.css'
@@ -10,41 +11,11 @@ import { bootstrapApp } from './app/bootstrap'
 
 bootstrapApp()
 
-// ✅ 新增 Root 组件
-function Root() {
-
-  useEffect(() => {
-    const w = window as any;
-
-    // 防止重复加载
-    if (w.ChannelIOInitialized) return;
-    w.ChannelIOInitialized = true;
-
-    const script = document.createElement('script');
-    script.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-    script.async = true;
-
-    script.onload = () => {
-      w.ChannelIO('boot', {
-        pluginKey: '717dfe15-4b5c-407e-ae72-5003e6a9ecd6'
-      });
-    };
-
-    document.body.appendChild(script);
-  }, []);
-
-  return (
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
     <GlobalErrorBoundary>
       <App />
     </GlobalErrorBoundary>
-  );
-}
-
-// ✅ 替换这里：App → Root
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Root />
   </React.StrictMode>
 )
-
 Modal.setAppElement('#root');
