@@ -26,7 +26,7 @@ function Root() {
 
     script.onload = () => {
       w.ChannelIO('boot', {
-        pluginKey: '你的pluginKey'
+        pluginKey: '717dfe15-4b5c-407e-ae72-5003e6a9ecd6'
       });
     };
 
